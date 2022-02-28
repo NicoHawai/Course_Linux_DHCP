@@ -1,8 +1,7 @@
 # Linux_short Day2
  
- GUEST ADDitions :
+ GUEST ADDitions le plus gros interet pour nous :
  presse-papier partagé
- dossier partagé
  graphique amelioré (peut utiliser les drivers du PC, et avoir une full resolution)
  
 
