@@ -6,7 +6,6 @@
 - [Un simple serveur DHCP](#un-simple-serveur-dhcp)
 - [Attribution d'une adresse ip statique](#attributionipstatic)
 - [DHCP failover (redondance)](#dhcpfailover)
-- Clé OMAPI
 - [Remarks/Tips](#remarkstips)
 
 ## Un simple serveur DHCP
@@ -129,8 +128,6 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
         }
 }
 ```
-
-```
 Redémarrer **isc-dhcp-server**
 
 ```
@@ -181,6 +178,7 @@ https://kb.isc.org/docs/isc-dhcp-41-manual-pages-dhcpdconf
 sudo iptables -t nat -A POSTROUTING -o enx000ec6bc9ef6 -j MASQUERADE
 sudo sysctl net.ipv4.ip_forward=1
 sudo ip route add default via 192.168.1.254
+- Clé OMAPI
 
 ---
 # Linux_short Day2 ESSENTIAL
