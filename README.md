@@ -1,7 +1,7 @@
 # Linux CCNA - after  days linux
 ---
 
-# Configure DHCP server, failover & relay 
+# Configure DHCP server, failover 
 
 - [Un simple serveur DHCP](#un-simple-serveur-dhcp)
 - [Attribution d'une adresse ip statique](#attributionipstatic)
