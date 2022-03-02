@@ -4,8 +4,10 @@
 # Configure DHCP server, failover & relay 
 
 - [Un simple serveur DHCP](#un-simple-serveur-dhcp)
-- [Attribution ip statiques](#attribution-ip-statiques)
-- [Remarks/Tips](#remarks-tips)
+- [Attribution d'une adresse ip statique](#attributionipstatic)
+- [DHCP failover (redondance)](#dhcpfailover)
+- Clé OMAPI
+- [Remarks/Tips](#remarkstips)
 
 ## Un simple serveur DHCP
 
@@ -53,7 +55,7 @@ sudo systemctl restart isc-dhcp-server
 <u>Et... C'est tout!</u>. Branchez un client sur le réseau.
 
 ---
-## Attribution ip statiques
+## Attribution d'une adresse ip statique <a id="attributionipstatic"></a>
 
 #use-host-decl-names on;
 Toujours dans **dhcpd.conf** :
@@ -64,21 +66,21 @@ hardware ethernet 00:A0:45:65:E4:B0;
 fixed-address 192.168.1.40;
 }
 
-## DHCP failover (redondance)
+## DHCP failover (redondance) <a id="dhcpfailover"></a>
 
 On revient sur le premier serveur, et on rajoute la configuration failover dans le fichier **dhcpd.conf**  
 
 ```
 failover peer "dhcp-failover" {
         primary;
-etween isc-dhcp and dhcpd        address 192.168.1.1;
+        address 192.168.1.1;
         port 847;
         peer address 192.168.1.2;
         port 647;
         max-response-delay 60;
         max-unacked-updates 10;
         mclt 1800;
-        split 128;
+        split 128;  # 256 = no balancing / 128 = 50% loadbalancing
         load balance max seconds 5;
 }
 ```
@@ -137,7 +139,7 @@ sudo systemctl restart isc-dhcp-server
 ```
 Vérifier les logs et le journalctl pour voir ce qu'il se passe
 
-## Remarks/Tips :
+## Remarks/Tips : <a id=remarkstips></a>
 
 ### On the DHCP server:
 
@@ -175,6 +177,10 @@ Step4:- Start DHCP Server
 > service dhcpd start
 
 
+https://kb.isc.org/docs/isc-dhcp-41-manual-pages-dhcpdconf
+
+sudo iptables -t nat -A POSTROUTING -o enx000ec6bc9ef6 -j MASQUERADE
+sudo sysctl net.ipv4.ip_forward=1
 
 ---
 # Linux_short Day2 ESSENTIAL
