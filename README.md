@@ -36,7 +36,7 @@ option domain-name-servers 1.1.1.1;             # Les DNS serveurs
 ```
 Et puis le subnet choisi:
 
-```
+```                failover peer "dhcp-failover";
 subnet 192.168.1.0 netmask 255.255.255.0 {
         option routers 192.168.1.1;
         option subnet-mask 255.255.255.0;
@@ -104,13 +104,10 @@ INTERFACESv6=""
 Dans **/etc/dhcp/dhcpd.conf**  
 
 ```
-option domain-name-servers 1.1.1.1;
-default-lease-time 86400;
-max-lease-time 172800;
-
-# ================================
-# DHCP FAILOVER CONFIGURATION
-# ================================
+default-lease-time 86400;                       # Temps en secondes 86400 = 24h
+max-lease-time 172800;                          # Temps en secondes 172800 = 48h / si la demande du client est plus elevée que le default
+ddns-update-style none;
+option domain-name-servers 1.1.1.1;             # Les DNS serveurs     
 
 failover peer "dhcp-failover" {
         secondary;
@@ -127,10 +124,12 @@ subnet 192.168.1.0 netmask 255.255.255.0 {
         option routers 192.168.1.1;
         option subnet-mask 255.255.255.0;
         pool{
-                failover peer "dhcp-failover";
                 range 192.168.1.50 192.168.1.250;
+                failover peer "dhcp-failover";
         }
 }
+```
+
 ```
 Redémarrer **isc-dhcp-server**
 
