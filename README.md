@@ -180,6 +180,12 @@ sudo sysctl net.ipv4.ip_forward=1
 sudo ip route add default via 192.168.1.254
 - Clé OMAPI
 
+
+netstat -tupan (net-tools)
+UDP port number 67 is the destination port of a server, and UDP port number 68 is used by the client.
+
+
+
 ---
 # Linux_short Day2 ESSENTIAL
  
