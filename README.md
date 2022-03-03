@@ -145,7 +145,7 @@ Vérifier les logs et le journalctl pour voir ce qu'il se passe
 
 - Check leases in FILE :
 
-> sudo vim /var/lib/dhcpd/dhcpd.leases
+> sudo vim /var/lib/dhcp/dhcpd.leases
 
 - Try/test the config file : 
 
