@@ -1,4 +1,7 @@
-# Linux CCNA - after  days linux
+# Linux CCNA courses  
+Trainer : Nico  
+Location: IRISIB  
+
 ---
 
 # Configure DHCP server, failover 
