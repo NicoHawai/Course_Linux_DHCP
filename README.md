@@ -7,7 +7,7 @@ Location: IRISIB
 # Configure DHCP server, failover 
 
 - [Un simple serveur DHCP](#un-simple-serveur-dhcp)
-- [Attribution d'une adresse ip statique](#attributionipstatic)
+- [Attribution d'une adresse ip statique via DHCP](#attributionipstatic)
 - [DHCP failover (redondance)](#dhcpfailover)
 - [Remarks/Tips](#remarkstips)
 
